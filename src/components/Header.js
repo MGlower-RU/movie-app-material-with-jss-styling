@@ -65,17 +65,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Header() {
-  const { dispatch } = useContext(MovieContext)
+  const { dispatch, state } = useContext(MovieContext)
   const [inputValue, setInputValue] = useState('')
 
   const classes = useStyles()
 
   function changeMovieTitle(e) {
     e.preventDefault()
-    if(inputValue.trim() === '') {
-      dispatch({type: 'title', titleName: 'Avengers'})
-    } else {
-      dispatch({type: 'title', titleName: inputValue.trim()})
+    if(state.movieTitle.trim().toLowerCase() !== inputValue.trim().toLowerCase()) {
+      if(inputValue.trim() === '') {
+        dispatch({type: 'title', titleName: 'Avengers'})
+      } else {
+        dispatch({type: 'title', titleName: inputValue.trim()})
+      }
     }
     setInputValue('')
   }

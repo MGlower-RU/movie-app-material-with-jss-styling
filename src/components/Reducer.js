@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 
-import Context from './Context';
+import Context from './Context'
 
 const initialState = {
   loading: true,
@@ -25,7 +25,7 @@ export default function Reducer(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch(`https://www.omdbapi.com/?s=${state.movieTitle}&apikey=dac294b0`, {
+    fetch(`https://www.omdbapi.com/?s=${state.movieTitle}&apikey=${process.env.REACT_APP_API_KEY}`, {
       "method": "GET",
     })
     .then(response => response.json())

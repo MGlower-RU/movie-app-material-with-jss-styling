@@ -171,12 +171,11 @@ function MoviesGrid({classes, state, isSkeleton}) {
   const [movieInfo, setMovieInfo] = useState({});
 
   const modalOpen = (movieId) => {
-    fetch(`https://www.omdbapi.com/?i=${movieId}&plot=full&apikey=dac294b0`, {
+    fetch(`https://www.omdbapi.com/?i=${movieId}&plot=full&apikey=${process.env.REACT_APP_API_KEY}`, {
       "method": "GET",
     })
     .then(response => response.json())
     .then(movie => {
-      console.log(movie)
       setMovieInfo(movie)
       setOpen(true)
     })
